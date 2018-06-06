@@ -3,6 +3,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 import tensorflow as tf
 from tensorflow.examples.tutorials.mnist import input_data
+import random
+
 
 def lrelu(x, th=0.2):
     return tf.maximum(th * x, x)
@@ -169,18 +171,27 @@ train_hist['total_ptime'] = []
 
 # training-loop
 np.random.seed(int(time.time()))
+random.seed(int(time.time()))
+
 print('training start!')
 start_time = time.time()
 for epoch in range(train_epoch):
     G_losses = []
     D_losses = []
     epoch_start_time = time.time()
+    last_loss_d = None
     for iter in range(mnist.train.num_examples // batch_size):
         # update discriminator
         x_ = train_set[iter*batch_size:(iter+1)*batch_size]
-        z_ = np.random.normal(0, 1, (batch_size, 1, 1, 100))
 
-        loss_d_, _ = sess.run([D_loss, D_optim], {x: x_, z: z_, isTrain: True})
+        if  random.random()<0.5 or last_loss_d is None:
+        	z_ = np.random.normal(0, 1, (batch_size, 1, 1, 100))
+
+        	loss_d_, _ = sess.run([D_loss, D_optim], {x: x_, z: z_, isTrain: True})
+        	last_loss_d = loss_d_
+        else:
+        	loss_d_ = last_loss_d #last one
+
         D_losses.append(loss_d_)
 
         # update generator
