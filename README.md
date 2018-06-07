@@ -13,7 +13,7 @@ Tensorflow implementation of Generative Adversarial Networks (GAN) [1] and Deep 
 
 ![Loss](tensorflow_DCGAN.png)
 
-## Resutls
+## Results
 * Generate using fixed noise (fixed_z_)
 
 <table align='center'>
@@ -51,16 +51,9 @@ Tensorflow implementation of Generative Adversarial Networks (GAN) [1] and Deep 
     * MNIST GAN - Avg. per epoch: 4.97 sec; Total 100 epochs: 1255.92 sec
     * MNIST DCGAN - Avg. per epoch: 175.84 sec; Total 20 epochs: 3619.97 sec
 
-## Development Environment
 
-* Windows 7
-* GTX1080 ti
-* cuda 8.0
-* Python 3.5.3
-* tensorflow-gpu 1.2.1
-* numpy 1.13.1
-* matplotlib 2.0.2
-* imageio 2.2.0
+## GAN Training Tricks
+https://github.com/soumith/ganhacks
 
 ## Reference
 
